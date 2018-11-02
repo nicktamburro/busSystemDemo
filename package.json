@@ -1,0 +1,22 @@
+{
+  "name": "bussystemdemo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicktamburro/busSystemDemo.git"
+  },
+  "author": "nick tamburro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nicktamburro/busSystemDemo/issues"
+  },
+  "homepage": "https://github.com/nicktamburro/busSystemDemo#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
