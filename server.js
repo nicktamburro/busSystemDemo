@@ -44,6 +44,8 @@ app.post('/sign_up' ,function(req,res){
 			throw error;
 		}
 		console.log("connected to database successfully");
+
+        
 		//CREATING A COLLECTION IN MONGODB USING NODE.JS
 		db.collection("details").insertOne(data, (err , collection) => {
 			if(err) throw err;
