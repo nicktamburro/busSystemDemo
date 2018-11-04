@@ -39,15 +39,16 @@ app.post('/sign_up' ,function(req,res){
 		"phone" : phone
 	}
 	
-	mongo.connect(new_db , function(error , db){
-		if (error){
-			throw error;
+	mongo.connect(new_db , function(err , client){
+		if (err){
+			throw err;
 		}
 		console.log("connected to database successfully");
 
+        let db = client.db('bussystem');
         
 		//CREATING A COLLECTION IN MONGODB USING NODE.JS
-		db.collection("details").insertOne(data, (err , collection) => {
+		db.collection("bussystem").insertOne(data, (err , collection) => {
 			if(err) throw err;
 			console.log("Record inserted successfully");
 			console.log(collection);
