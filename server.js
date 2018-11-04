@@ -1,3 +1,4 @@
+//node dependencies
 const express = require('express');
 const path = require('path'); 
 const mongo = require('mongodb');
@@ -5,15 +6,17 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
+//db key hidden
 const new_db = require('./config/keys').mongoURI;;
 
+//middleware
 app.use('/public', express.static(__dirname + '/public'));
 app.use( bodyParser.json() );
 app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
 	extended: true
 }));
 
-
+//get for main screen
 app.get('/',function(req,res){
 	res.set({
 		'Access-Control-Allow-Origin' : '*'
@@ -21,17 +24,15 @@ app.get('/',function(req,res){
 	return res.redirect('/public/index.html');
 }).listen(3000);
 
-// Sign-up function starts here. . .
+// passing data from form to back end
 app.post('/sign_up' ,function(req,res){
 	const name = req.body.name;
 	const passengers= req.body.passengers;
     const pickup = req.body.pickup;
 	const time = req.body.time;
     const notes = req.body.notes;
-	//var password = getHash( pass , phone ); 
-
-//name, passengers, pickup, time, notes
 	
+
 	const data = {
 		"name":name,
 		"passengers":passengers,
@@ -40,6 +41,7 @@ app.post('/sign_up' ,function(req,res){
         "notes" : notes
 	}
 	
+    //connect to db
 	mongo.connect(new_db , function(err , client){
 		if (err){
 			throw err;
@@ -48,7 +50,7 @@ app.post('/sign_up' ,function(req,res){
 
         let db = client.db('bussystem');
         
-		//CREATING A COLLECTION IN MONGODB USING NODE.JS
+		//adding our record into db
 		db.collection("bussystem").insertOne(data, (err , collection) => {
 			if(err) throw err;
 			console.log("Record inserted successfully");
@@ -56,10 +58,12 @@ app.post('/sign_up' ,function(req,res){
 		});
 	});
 	
+    //just to get a visual confirmation, take this out later
 	console.log("DATA is " + JSON.stringify(data) );
 	res.set({
 		'Access-Control-Allow-Origin' : '*'
 	});
+    //and then we show them the "success" page if it all worked
 	return res.redirect('/public/success.html');  
 
 });
