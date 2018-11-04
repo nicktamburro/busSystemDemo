@@ -26,17 +26,20 @@ app.get('/',function(req,res){
 // Sign-up function starts here. . .
 app.post('/sign_up' ,function(req,res){
 	var name = req.body.name;
-	var email= req.body.email;
-	var pass = req.body.password;
-		var phone = req.body.phone;
-	//var password = getHash( pass , phone ); 				
+	var passengers= req.body.passengers;
+	var pickup = req.body.pickup;
+	var time = req.body.time;
+    var notes = req.body.notes;
+	//var password = getHash( pass , phone ); 
 
+//name, passengers, pickup, time, notes
 	
 	var data = {
 		"name":name,
-		"email":email,
-		"pass": pass, 
-		"phone" : phone
+		"passengers":passengers,
+		"pickup": pickup, 
+		"time" : time,
+        "notes" : notes
 	}
 	
 	mongo.connect(new_db , function(err , client){
