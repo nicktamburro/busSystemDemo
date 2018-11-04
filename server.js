@@ -25,7 +25,7 @@ app.get('/',function(req,res){
 }).listen(3000);
 
 // passing data from form to back end
-app.post('/sign_up' ,function(req,res){
+app.post('/schedule' ,function(req,res){
 	const name = req.body.name;
 	const passengers= req.body.passengers;
     const pickup = req.body.pickup;
@@ -46,20 +46,20 @@ app.post('/sign_up' ,function(req,res){
 		if (err){
 			throw err;
 		}
-		console.log("connected to database successfully");
+		//console.log("connected to database successfully");
 
         let db = client.db('bussystem');
         
 		//adding our record into db
 		db.collection("bussystem").insertOne(data, (err , collection) => {
 			if(err) throw err;
-			console.log("Record inserted successfully");
-			console.log(collection);
+			//console.log("Record inserted successfully");
+			//console.log(collection);
 		});
 	});
 	
     //just to get a visual confirmation, take this out later
-	console.log("DATA is " + JSON.stringify(data) );
+	//console.log("DATA is " + JSON.stringify(data) );
 	res.set({
 		'Access-Control-Allow-Origin' : '*'
 	});
