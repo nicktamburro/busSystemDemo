@@ -2,12 +2,9 @@ const express = require('express');
 const path = require('path'); 
 const mongo = require('mongodb');
 const bodyParser = require('body-parser');
-const crypto = require('crypto');
 
 const app = express();
 
-//W
-//TODO: MongoError: Authentication failed.
 const new_db = require('./config/keys').mongoURI;;
 
 app.use('/public', express.static(__dirname + '/public'));
@@ -15,6 +12,7 @@ app.use( bodyParser.json() );
 app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
 	extended: true
 }));
+
 
 app.get('/',function(req,res){
 	res.set({
@@ -25,16 +23,16 @@ app.get('/',function(req,res){
 
 // Sign-up function starts here. . .
 app.post('/sign_up' ,function(req,res){
-	var name = req.body.name;
-	var passengers= req.body.passengers;
-	var pickup = req.body.pickup;
-	var time = req.body.time;
-    var notes = req.body.notes;
+	const name = req.body.name;
+	const passengers= req.body.passengers;
+    const pickup = req.body.pickup;
+	const time = req.body.time;
+    const notes = req.body.notes;
 	//var password = getHash( pass , phone ); 
 
 //name, passengers, pickup, time, notes
 	
-	var data = {
+	const data = {
 		"name":name,
 		"passengers":passengers,
 		"pickup": pickup, 
