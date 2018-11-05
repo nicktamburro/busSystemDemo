@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path'); 
 const mongo = require('mongodb');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const app = express();
 
@@ -23,6 +24,8 @@ app.get('/',function(req,res){
 	});
 	return res.redirect('/public/index.html');
 }).listen(3000);
+
+
 
 // passing data from form to back end
 app.post('/schedule' ,function(req,res){
@@ -55,8 +58,13 @@ app.post('/schedule' ,function(req,res){
 			if(err) throw err;
 			//console.log("Record inserted successfully");
 			//console.log(collection);
+
 		});
 	});
+
+    
+
+    
 	
     //just to get a visual confirmation, take this out later
 	//console.log("DATA is " + JSON.stringify(data) );
@@ -67,6 +75,5 @@ app.post('/schedule' ,function(req,res){
 	return res.redirect('/public/success.html');  
 
 });
-
 
 console.log("Server listening at : 3000");
