@@ -28,6 +28,7 @@ app.get('/',function(req,res){
 
 
 // passing data from form to back end
+//we make the form entries into a variable
 app.post('/schedule' ,function(req,res){
 	const name = req.body.name;
 	const passengers= req.body.passengers;
@@ -36,6 +37,7 @@ app.post('/schedule' ,function(req,res){
     const notes = req.body.notes;
 	
 
+//then we add it all to the data object
 	const data = {
 		"name":name,
 		"passengers":passengers,
